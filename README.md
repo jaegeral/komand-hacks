@@ -11,6 +11,10 @@ Either Workflows or plugins that can be used multiple times
 
 Things that can be useful for input templates
 
+# pattern matching
+
+Some examples that where used for input matching
+
 # Disclaimer
 
 I am in no way in relationship with Komand nor should the content of this repository takin into any production system, it is provided as is, no warranty whatsoever.

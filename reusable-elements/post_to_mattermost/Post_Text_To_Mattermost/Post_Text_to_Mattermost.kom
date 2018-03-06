@@ -1,0 +1,142 @@
+{
+	"komand_version": "0.4.0",
+	"export_date": "2018-03-06T11:22:57.110990647Z",
+	"export_by": {
+		"user_name": "jaegeral",
+		"first_name": "Alexander",
+		"last_name": "Jaeger",
+		"email": ""
+	},
+	"workflows": [
+		{
+			"workflow_id": "f7c8784f-d2bd-46b9-889a-8562a347c33c",
+			"workflow_version_id": "c1dce266-cf1a-4620-8903-d2d34e7681ad",
+			"name": "Post_Text_to_Mattermost",
+			"type": "normal",
+			"steps": [
+				{
+					"id": "8e93e3e3-f02a-485d-e99c-d8261877a3a3",
+					"parent_id": "",
+					"name": "Job_created",
+					"description": "",
+					"type": "api_trigger",
+					"parameters": {
+						"trigger_config_id": "657c89b0-de91-4eb7-be61-64ba6d42f5f8"
+					},
+					"continue_on_failure": false,
+					"is_disabled": false
+				},
+				{
+					"id": "b8a17d75-0f9a-2bb3-4034-ff511f00f3a1",
+					"parent_id": "",
+					"name": "",
+					"description": "",
+					"type": "end",
+					"parameters": {},
+					"continue_on_failure": false,
+					"is_disabled": false
+				},
+				{
+					"id": "33436dbf-9405-7c6f-67fe-f5beb766f924",
+					"parent_id": "",
+					"name": "POST",
+					"description": "",
+					"type": "action",
+					"parameters": {
+						"step_id": "post",
+						"plugin_name": "rest",
+						"plugin_vendor": "komand",
+						"plugin_version": "0.1.2-test",
+						"step_title": "POST",
+						"plugin_title": "REST",
+						"input": {
+							"route": "/hooks/WEBHOOK",
+							"body": {
+								"text": "{{[$job].[$name]}} script started for https://YOURKOMANDHOST/jobs/details/{{[$job].[$id]}} {{[$job].[$URL]}}"
+							},
+							"headers": {}
+						},
+						"repeat_variable": ""
+					},
+					"continue_on_failure": false,
+					"is_disabled": false
+				},
+				{
+					"id": "395ab6f3-2062-7125-dbce-81e5e1f7e592",
+					"parent_id": "",
+					"name": "POST_Argument",
+					"description": "",
+					"type": "action",
+					"parameters": {
+						"step_id": "post",
+						"plugin_name": "rest",
+						"plugin_vendor": "komand",
+						"plugin_version": "0.1.2-test",
+						"step_title": "POST",
+						"plugin_title": "REST",
+						"input": {
+							"route": "/hooks/WEBHOOK",
+							"body": {
+								"text": "{{[Job_created].[text_post]}}"
+							},
+							"headers": {}
+						},
+						"repeat_variable": ""
+					},
+					"continue_on_failure": false,
+					"is_disabled": false
+				}
+			],
+			"paths": [
+				{
+					"id": "89aca26e-2d43-505d-7095-baa4631f3bc3",
+					"from_step": "8e93e3e3-f02a-485d-e99c-d8261877a3a3",
+					"to_step": "33436dbf-9405-7c6f-67fe-f5beb766f924"
+				},
+				{
+					"id": "265616e5-b6ea-3a96-6be1-0bcaebd83200",
+					"from_step": "33436dbf-9405-7c6f-67fe-f5beb766f924",
+					"to_step": "395ab6f3-2062-7125-dbce-81e5e1f7e592"
+				},
+				{
+					"id": "eea8a82e-d309-aabc-466c-e40b709c1067",
+					"from_step": "395ab6f3-2062-7125-dbce-81e5e1f7e592",
+					"to_step": "b8a17d75-0f9a-2bb3-4034-ff511f00f3a1"
+				}
+			],
+			"created_by": {
+				"user_name": "jaegeral",
+				"first_name": "Alexander",
+				"last_name": "Jaeger",
+				"email": ""
+			},
+			"last_modified": "2018-02-28T13:12:18Z"
+		}
+	],
+	"triggers": [
+		{
+			"id": "657c89b0-de91-4eb7-be61-64ba6d42f5f8",
+			"name": "Job_created",
+			"type": "api_trigger",
+			"api_schema": {
+				"type": "object",
+				"properties": {
+					"text_post": {
+						"type": "string",
+						"title": "Text Post",
+						"description": "text_post"
+					}
+				}
+			},
+			"api_variables": [
+				{
+					"error": "",
+					"format": "",
+					"name": "text_post",
+					"title": "Text Post",
+					"type": "string"
+				}
+			]
+		}
+	]
+}

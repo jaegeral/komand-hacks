@@ -3,11 +3,11 @@ Hacky ways to solve stuff that is not possible with Komand built in
 
 By playing around with different tools some things need to be documented.
 
-# Re-usable Elements
+## Re-usable Elements
 
 Either Workflows or plugins that can be used multiple times
 
-# input-templating
+## input-templating
 
 Things that can be useful for input templates
 

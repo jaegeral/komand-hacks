@@ -1,0 +1,124 @@
+{
+	"komand_version": "0.4.0",
+	"export_date": "2018-01-15T14:56:00.44457285Z",
+	"export_by": {
+		"user_name": "jaegeral",
+		"first_name": "Alexander",
+		"last_name": "Jaeger",
+		"email": "mail@alexanderjaeger.de"
+	},
+	"workflows": [
+		{
+			"workflow_id": "ebeda1c9-2629-4f58-9f37-a17bf7cb3e17",
+			"workflow_version_id": "2f6e3b6b-718b-4393-a409-1bc9825ae939",
+			"name": "FIRST_Team_lookup",
+			"description": "Looks up a team on first.org by a given search string (company name)",
+			"type": "snippet",
+			"steps": [
+				{
+					"id": "a7d7e6c6-b2af-1673-487d-461fa1622e34",
+					"parent_id": "",
+					"name": "Trigger Variables",
+					"description": "",
+					"type": "snippet_map",
+					"parameters": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"search_string": {
+									"type": "string",
+									"title": "Search String",
+									"description": "search_string"
+								}
+							}
+						},
+						"variables": [
+							{
+								"error": "",
+								"name": "search_string",
+								"title": "Search String",
+								"type": "string"
+							}
+						]
+					},
+					"continue_on_failure": false,
+					"is_disabled": false
+				},
+				{
+					"id": "34517594-04d9-2fbd-c03f-c8c73599ebc0",
+					"parent_id": "",
+					"name": "GET",
+					"description": "",
+					"type": "action",
+					"parameters": {
+						"step_id": "get",
+						"plugin_name": "rest",
+						"plugin_vendor": "komand",
+						"plugin_version": "0.1.2",
+						"step_title": "GET",
+						"plugin_title": "REST",
+						"connection": {
+							"name": "",
+							"parameters": null,
+							"connection_id": 8
+						},
+						"input": {
+							"route": "/data/v1/teams?q={{[Trigger Variables].[search_string]}}",
+							"headers": {}
+						},
+						"repeat_variable": ""
+					},
+					"continue_on_failure": false,
+					"is_disabled": false
+				},
+				{
+					"id": "8cc26634-fcbd-e39d-cb33-898c37553a65",
+					"parent_id": "",
+					"name": "FIRST Team Lookup Result",
+					"description": "",
+					"type": "artifact",
+					"parameters": {
+						"type": "markdown",
+						"content": "",
+						"input": {
+							"content": "Result of the lookup:\n\n{{#each [GET].[body_object].[data]}}\n{{#each .}}\n  {{@key}} = {{.}}\n{{/each}}\n---------------------------------\n{{/each}}\n"
+						}
+					},
+					"continue_on_failure": false,
+					"is_disabled": false
+				}
+			],
+			"paths": [
+				{
+					"id": "eb992175-dc5f-d38e-e8a7-39e1db0058a2",
+					"from_step": "a7d7e6c6-b2af-1673-487d-461fa1622e34",
+					"to_step": "34517594-04d9-2fbd-c03f-c8c73599ebc0"
+				},
+				{
+					"id": "92465788-9caf-e77b-3b6e-750611a2dbed",
+					"from_step": "34517594-04d9-2fbd-c03f-c8c73599ebc0",
+					"to_step": "8cc26634-fcbd-e39d-cb33-898c37553a65"
+				},
+				{
+					"id": "3fdb58d4-84f0-bf07-0df9-fe7973e99f1e",
+					"from_step": "8cc26634-fcbd-e39d-cb33-898c37553a65",
+					"to_step": ""
+				}
+			],
+			"tags": [
+				"first",
+				"rest",
+				"team",
+				"lookup",
+				"works"
+			],
+			"created_by": {
+				"user_name": "jaegeral",
+				"first_name": "Alexander",
+				"last_name": "Jaeger",
+				"email": "mail@alexanderjaeger.de"
+			},
+			"last_modified": "2018-01-15T14:55:26Z"
+		}
+	]
+}

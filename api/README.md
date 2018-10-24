@@ -2,7 +2,25 @@
 
 To interact with your Komand system, an API is available.
 
-# Jobs
+## Permissions
+
+If you do n ot have the right permissions, the following error message will be posted
+
+````
+{"message":"checkpermission: You do not have the right permissions to access this resource","status":"ACCESS_DENIED"}
+````
+
+# All Jobs
+
+Be careful with that query, as it will output a lot of data!!!
+
+## URL
+
+```
+https://komandurl/v2/jobs
+```
+
+# Dedicated Job
 
 ## URL
 
@@ -43,6 +61,30 @@ https://komandurl/v2/connections
 ````
 
 ## Example Response
+
+None
+
+# Users
+
+Get all users of a system
+
+````
+https://komandurl/v2/users
+````
+
+## Example response
+
+```
+{"users":[{"user_id":1,"user_name":"komand","inactive":false,"first_name":"Komand","last_name":"Admin","company_title":"","avatar_url":"https://www.gravatar.com/avatar/277afd6a111494867161f6a67c228726?d=mm","email":"komand@example.com","role_name":"administrator","role":{"name":"administrator","description":"Administrator","permissions":["PLUGIN_MODIFY","WORKFLOW_MODIFY","CONNECTION_MODIFY","USER_CREATE","USER_MANAGER","APP","PRODUCT_KEY_VIEW"]}}}
+```
+
+# Plugins
+
+Provides a JSON list of all installed plugins (be careful, lot of data!)
+
+```
+https://komandurl/v2/plugins
+```
 
 
 

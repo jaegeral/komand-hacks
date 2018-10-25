@@ -10,9 +10,9 @@ If you do n ot have the right permissions, the following error message will be p
 {"message":"checkpermission: You do not have the right permissions to access this resource","status":"ACCESS_DENIED"}
 ````
 
-# Login
+# Login / Authorisation
 
-Login is donw with JWT (JSON Web Token).
+Login / Authorisation is done with JWT (JSON Web Token).
 
 ## URL
 
@@ -41,6 +41,15 @@ That token string is a base64 encoded json object:
 ```
 curl -X POST -k -H 'Accept: application/json' -H 'Accept.Encoding: gzip, deflate, br' -i 'https://komandurl/v2/sessions' --data '{"user_name": "admin", "user_secret": "PASSWORD"}'
 ```
+
+That token can then be used for authentitcate other API endpoints e.g.:
+
+## Sample Authentication
+
+```
+curl -X GET -k -H 'Authorization: Bearer <token>' -i 'https://komandurl/v2/connections'
+```
+
 
 # All Jobs
 

@@ -127,5 +127,25 @@ Provides a JSON list of all installed plugins (be careful, lot of data!)
 https://komandurl/v2/plugins
 ```
 
+# Post a Job
 
+In addition to the events/trigger it is also possible to post a job and get the Job ID back
+
+## URL
+
+```
+https://komandurl/v2/workflows/<workflowid>/events
+```
+
+## Example
+
+```
+curl -X POST -k -H 'Authorization: Bearer <token>' -i 'https://<komandurl>/v2/workflows/<workflowid>/events' --data '{"key": "value", "job_id": "123123", "text_post": "123123"}'
+```
+
+## Sample response
+
+```
+{"job_id":"7b345d83-ab70-4b19-b2a0-019718245678","job_url":"http://127.0.0.1:8000/jobs/details/7b345d83-ab70-4b19-b2a0-019718245678","message":"event published to queue"}
+```
 

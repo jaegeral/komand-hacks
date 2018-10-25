@@ -10,6 +10,36 @@ If you do n ot have the right permissions, the following error message will be p
 {"message":"checkpermission: You do not have the right permissions to access this resource","status":"ACCESS_DENIED"}
 ````
 
+# Login
+
+## URL
+
+```
+POST https://komandurl/v2/sessions
+```
+
+## Response
+
+## Sampe data
+
+Cannot post that because don't want to disclose my data. But it will look like the following:
+
+```
+{"token":"eyJhbG........"}
+```
+
+That token string is a base64 encoded json object:
+
+```
+{"alg":"HS256","typ":"JWT"}{"enable_licensing":true,"exp":123455,"hashed_account_id":"aaaaaaaaaaaaaaaaaaaaaa","iat":1540453818,"komand_branch":"master","komand_revision":"46547f857dfd862ce7d82d526ce8f94d42b600f5","komand_version":"0.4000","pendo_account":"aaaaaaaaaaa","perms":["PLUGIN_MODIFY","WORKFLOW_MODIFY","CONNECTION_MODIFY","USER_CREATE","USER_MANAGER","APP","PRODUCT_KEY_VIEW"],"sub":"jaegeral","user":{"user_id":1,"user_name":"admin","inactive":false,"first_name":"Admin","last_name":"admin","company_title":"","avatar_url":""}
+```
+
+## Sample POST
+
+```
+curl -X POST -k -H 'Accept: application/json' -H 'Accept.Encoding: gzip, deflate, br' -i 'https://komandurl/v2/sessions' --data '{"user_name": "admin", "user_secret": "PASSWORD"}'
+```
+
 # All Jobs
 
 Be careful with that query, as it will output a lot of data!!!

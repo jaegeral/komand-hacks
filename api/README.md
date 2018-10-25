@@ -12,6 +12,8 @@ If you do n ot have the right permissions, the following error message will be p
 
 # Login
 
+Login is donw with JWT (JSON Web Token).
+
 ## URL
 
 ```
